@@ -5,7 +5,7 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
 
     const path = request.nextUrl.pathname       //.nextUrl.pathname will give you on which path you are on
-    const isPublicPth = path ==='/login' || path === '/signup'
+    const isPublicPth = path ==='/login' || path === '/signup'  || path === '/verifyEmail'
     const token = request.cookies.get('token')?.value || ''     //gating the token if it is not there set the '' ( empty string ) 
     if(isPublicPth && token){
         return NextResponse.redirect(new URL('/',request.nextUrl))
@@ -24,6 +24,7 @@ export const config = {
     '/',
     '/profile',
     '/login',
-    '/signup'
+    '/signup',
+    '/verifyEmail'
   ],
 }
